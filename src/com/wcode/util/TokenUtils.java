@@ -1,16 +1,13 @@
 package com.wcode.util;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wcode.crypto.RSA;
 import com.wcode.token.TokenEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+
+import static com.wcode.util.HttpUtils.getJSONObject;
 
 /**
  * @author Y-Aron
@@ -58,11 +55,5 @@ public class TokenUtils {
         httpPost.setHeader(SECRET, secretStr);
         JSONObject json = getJSONObject(httpPost);
         return json.getString(TOKEN);
-    }
-
-    private static JSONObject getJSONObject(HttpPost post) throws IOException {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        CloseableHttpResponse resp = httpClient.execute(post);
-        return JSON.parseObject(EntityUtils.toString(resp.getEntity()));
     }
 }
