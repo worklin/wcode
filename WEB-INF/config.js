@@ -2,6 +2,7 @@ window.Wcode = {
 	WF_TYPE: 'WF_TYPE',
 	MODE_TYPE: 'MODE_TYPE',
 	LIST_TYPE: 'LIST_TYPE',
+	NEW_NODE: '0',
 	ALL_NODE: 'ALL_NODE',
 	ALL_MODE_LIST: 'ALL_MODE_LIST',
 	ALL_TEMPLATE: 'ALL_TEMPLATE',
@@ -46,7 +47,7 @@ window.Wcode = {
 			const { workflowid, nodeid } = WfForm.getBaseInfo()
 			if (workflowid != wid) return
 			const { submitParam: { nodetype }} = WfForm.getGlobalStore()
-			if (nid ===  Wcode.ALL_NODE || nid == nodeid || (nid === '0' && nodetype === '0'))
+			if (nid ===  Wcode.ALL_NODE || nid == nodeid || (nid === Wcode.NEW_NODE && nodetype === '0'))
 				return true
 		})
 	},
@@ -102,7 +103,7 @@ window.Wcode = {
 		let _k = ''
 		switch (mode) {
 			case this.WF_TYPE:
-				_k  = nodeId === undefined ? '0' : nodeId
+				_k  = nodeId === undefined ? Wcode.NEW_NODE : nodeId
 				return {
 					_k,
 					url: '#/main/workflow/req',

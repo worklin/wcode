@@ -1,6 +1,5 @@
 package com.wcode.util;
 
-import com.engine.workflow.service.impl.RequestFormServiceImpl;
 import com.wcode.workflow.WorkflowEntity;
 import org.slf4j.Logger;
 import weaver.hrm.User;
@@ -59,7 +58,6 @@ public class WorkflowUtils {
     }
 
     private static boolean checkWorkflowInfo(WorkflowEntity wf) {
-        RequestFormServiceImpl service = new RequestFormServiceImpl();
         logger.debug("-----> workflow info: {}", wf);
         if (wf.getWorkflowId() == null || wf.getUid() == null) {
             return false;
